@@ -292,6 +292,9 @@ class SimpleMarkedSanitizer {
   }
 }
 
+SimpleMarkedSanitizer.ELEMENT_WHITELIST = ELEMENT_WHITELIST;
+SimpleMarkedSanitizer.ATTRIBUTE_WHITELIST = ATTRIBUTE_WHITELIST;
+
 /// export module
 if (typeof module !== 'undefined' && typeof exports === 'object') {
   module.exports = SimpleMarkedSanitizer;

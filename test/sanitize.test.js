@@ -81,4 +81,22 @@ describe("SimpleMarkedSanitizer", function() {
     const result = apply(input);
     assert.equal(result, output);
   });
+
+  it("with custom allowed element'>'", () => {
+    const sanitizer = new Sanitizer().elementWhiteList([].concat(Sanitizer.ELEMENT_WHITELIST).concat(["h10"]));
+    const input  = '<h10 id="hoge"   class="fuga" style >test</h10>';
+    const output = '<p><h10 id="hoge" class="fuga" style>test</h10></p>';
+    const result = apply(input, sanitizer);
+    assert.equal(result, output);
+  });
+
+  it("with custom allowed attribute", () => {
+    const sanitizer = new Sanitizer().attributeWhiteList(Object.assign({
+      h1: ["hoge"]
+    }, Sanitizer.ATTRIBUTE_WHITELIST));
+    const input  = '<h1 id="hoge"   class="fuga" hoge="fuga" style >test</h1>';
+    const output = '<p><h1 id="hoge" class="fuga" hoge="fuga" style>test</h1></p>';
+    const result = apply(input, sanitizer);
+    assert.equal(result, output);
+  });
 });
