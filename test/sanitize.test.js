@@ -109,14 +109,29 @@ describe("SimpleMarkedSanitizer", function() {
   });
 
   it("with empty tag", () => {
-    const input  = '<br/>';
+    const input  = '<br />';
     const output = '<p><br/></p>';
     const result = apply(input);
     assert.equal(result, output);
   });
+
   it("with empty tag with attributes", () => {
     const input  = '<img src="hoge" alt="fuga"/>';
     const output = '<p><img src="hoge" alt="fuga"/></p>';
+    const result = apply(input);
+    assert.equal(result, output);
+  });
+
+  it("with empty attribute value", () => {
+    const input  = '<img src="" alt="fuga"/>';
+    const output = '<p><img src="" alt="fuga"/></p>';
+    const result = apply(input);
+    assert.equal(result, output);
+  });
+
+  it("with attribute value which startsWith `javascript:`", () => {
+    const input  = '<img src="  javascript:hoge" alt="fuga"/>';
+    const output = '<p><img alt="fuga"/></p>';
     const result = apply(input);
     assert.equal(result, output);
   });

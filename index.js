@@ -52,6 +52,8 @@ const ELEMENT_WHITELIST = [
   'strike',
   'summary',
   'details',
+  'center',
+  'span',
 ];
 
 const ATTRIBUTE_WHITELIST = {
@@ -262,7 +264,7 @@ class SimpleMarkedSanitizer {
       if (!this.isAllowedAttribute(tagName, parsed.name)) {
         return false;
       }
-      if (parsed.value && parsed.value.startsWith("javascript:")) {
+      if (parsed.value && parsed.value.trim().startsWith("javascript:")) {
         return false;
       }
       return true;
