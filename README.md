@@ -17,6 +17,20 @@ If attribute is not in whitelist, it will be removed.
 
 ## How to use
 
+Simple
+```
+const marked = require("marked");
+const SimpleMarkedSanitizer = require("simple-marked-sanitizer");
+
+const sanitizer = new SimpleMarkedSanitizer();
+
+const htmlString = marked(markdownString, {
+  sanitize: true,
+  sanitizer: sanitizer.getSanitizer()
+});
+```
+
+With custom whitelist.
 ```
 const marked = require("marked");
 const SimpleMarkedSanitizer = require("simple-marked-sanitizer");
