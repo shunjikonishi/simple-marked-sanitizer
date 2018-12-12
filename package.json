@@ -1,0 +1,28 @@
+{
+  "name": "simple-marked-sanitizer",
+  "version": "0.0.1",
+  "description": "Simple sanitizer for marked",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shunjikonishi/simple-marked-sanitizer.git"
+  },
+  "keywords": [
+    "marked",
+    "sanitizer",
+    "sanitize"
+  ],
+  "author": "Shunji Konishi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shunjikonishi/simple-marked-sanitizer/issues"
+  },
+  "homepage": "https://github.com/shunjikonishi/simple-marked-sanitizer#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "marked": "^0.5.2"
+  }
+}
