@@ -251,7 +251,10 @@ class SimpleMarkedSanitizer {
       return escape(tag);
     }
     const tagName = blocks[1].toLowerCase();
-    const attrBlock = blocks[2];
+    let attrBlock = blocks[2];
+    if (attrBlock && tag.endsWith("/>")) {
+      attrBlock = attrBlock.substring(0, attrBlock.length - 1); // Remove last `/`
+    }
     if (this.isAllowedTag(tagName)) {
       return escape(tag);
     }

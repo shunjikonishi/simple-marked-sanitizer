@@ -82,6 +82,14 @@ describe("SimpleMarkedSanitizer", function() {
     assert.equal(result, output);
   });
 
+  // In this case, marked doesn't recognize h1 is a tag.
+  it.skip("with invalid attr def(2)", () => {
+    const input  = '<h1 id="ho"ge"   class="fuga" hoge="fuga" style >test</h1>';
+    const output = '<p><h1>test</h1></p>';
+    const result = apply(input);
+    assert.equal(result, output);
+  });
+
   it("with custom allowed element'>'", () => {
     const sanitizer = new Sanitizer().elementWhiteList([].concat(Sanitizer.ELEMENT_WHITELIST).concat(["h10"]));
     const input  = '<h10 id="hoge"   class="fuga" style >test</h10>';
@@ -97,6 +105,19 @@ describe("SimpleMarkedSanitizer", function() {
     const input  = '<h1 id="hoge"   class="fuga" hoge="fuga" style >test</h1>';
     const output = '<p><h1 id="hoge" class="fuga" hoge="fuga" style>test</h1></p>';
     const result = apply(input, sanitizer);
+    assert.equal(result, output);
+  });
+
+  it("with empty tag", () => {
+    const input  = '<br/>';
+    const output = '<p><br/></p>';
+    const result = apply(input);
+    assert.equal(result, output);
+  });
+  it("with empty tag with attributes", () => {
+    const input  = '<img src="hoge" alt="fuga"/>';
+    const output = '<p><img src="hoge" alt="fuga"/></p>';
+    const result = apply(input);
     assert.equal(result, output);
   });
 });
