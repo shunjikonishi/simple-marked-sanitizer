@@ -1,6 +1,6 @@
 {
   "name": "simple-marked-sanitizer",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Simple sanitizer for marked",
   "main": "index.js",
   "scripts": {
