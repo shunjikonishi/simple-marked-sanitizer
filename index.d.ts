@@ -1,7 +1,17 @@
-export default class SimpleMarkedSanitizer {
-  construct(): SimpleMarkedSanitizer;
+export as namespace SimpleMarkedSanitizer;
 
-  elementWhiteList(list: string[]): SimpleMarkedSanitizer;
-  attributeWhiteList(list: {[key: string]: string[]}): SimpleMarkedSanitizer;
+export = SimpleMarkedSanitizer;
+
+declare class SimpleMarkedSanitizer {
+  constructor();
+  elementWhiteList(v: Array<string>): SimpleMarkedSanitizer;
+  attributeWhiteList(v: {
+    [key: string]: Array<string>;
+  }): SimpleMarkedSanitizer;
   getSanitizer(): (str: string) => string;
+}
+
+declare namespace SimpleMarkedSanitizer {
+  const ELEMENT_WHITELIST: string[];
+  const ATTRIBUTE_WHITELIST: { [key: string]: Array<string> };
 }
