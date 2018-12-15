@@ -4,10 +4,16 @@ export = SimpleMarkedSanitizer;
 
 declare class SimpleMarkedSanitizer {
   constructor();
+  
+  elementWhiteList(): Array<string>;
   elementWhiteList(v: Array<string>): SimpleMarkedSanitizer;
-  attributeWhiteList(v: {
-    [key: string]: Array<string>;
-  }): SimpleMarkedSanitizer;
+
+  attributeWhiteList() : { [key: string]: Array<string> }
+  attributeWhiteList(v: { [key: string]: Array<string> }): SimpleMarkedSanitizer;
+
+  debug(): boolean;
+  debug(v: boolean): SimpleMarkedSanitizer;
+
   getSanitizer(): (str: string) => string;
 }
 

@@ -3,7 +3,7 @@ const marked = require("marked");
 
 const Sanitizer = require("../index.js");
 
-const DEFAULT_SANITIZER = new Sanitizer();
+const DEFAULT_SANITIZER = new Sanitizer().debug(true);
 
 function apply(input, sanitizer) {
   return marked(input, {

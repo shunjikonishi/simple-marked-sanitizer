@@ -207,15 +207,30 @@ class SimpleMarkedSanitizer {
   constructor() {
     this._elementWhiteList = ELEMENT_WHITELIST;
     this._attributeWhiteList = ATTRIBUTE_WHITELIST;
+    this._debug = false;
   }
 
   elementWhiteList(v) {
+    if (!v) {
+      return this._elementWhiteList;
+    }
     this._elementWhiteList = v;
     return this;
   }
 
   attributeWhiteList(v) {
+    if (!v) {
+      return this._attributeWhiteList;
+    }
     this._attributeWhiteList = v;
+    return this;
+  }
+
+  debug(v) {
+    if (typeof(v) === "undefined") {
+      return this._debug;
+    }
+    this._debug = v;
     return this;
   }
 
@@ -224,11 +239,11 @@ class SimpleMarkedSanitizer {
   }
 
   sanitize(tag) {
-    if (tag.startsWith("</")) {
-      return this.sanitizeCloseTag(tag);
-    } else {
-      return this.sanitizeOpenTag(tag);
+    const result = tag.startsWith("</") ? this.sanitizeCloseTag(tag) : this.sanitizeOpenTag(tag);
+    if (this._debug) {
+      console.log(`[SimpleMarkedSanitizer] ${tag} -> ${result}`);
     }
+    return result;
   }
 
   isAllowedTag(tagName) {

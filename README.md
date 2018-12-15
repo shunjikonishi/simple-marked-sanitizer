@@ -44,7 +44,7 @@ const sanitizer = new SimpleMarkedSanitizer().elementWhiteList([ // Define name 
     "a": ["href", "target"],
     ...
     "*": [class", "id", "style"] // `*` means these attributes are allowed to all tags.
-  });
+  }).debug(true); // If you want to see conversion result in console.log, switch debug flag to true.
 
 const htmlString = marked(markdownString, {
   sanitize: true,
