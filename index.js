@@ -52,7 +52,6 @@ const ELEMENT_WHITELIST = [
   'strike',
   'summary',
   'details',
-  'center',
   'span',
 ];
 
