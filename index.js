@@ -357,7 +357,7 @@
     let index = this._tags.length - 2;
     while (index >= 0) {
       if (this._tags[index] === tagName) {
-        this._tags = this._tass.slice(0, index);
+        this._tags = this._tags.slice(0, index);
         return;
       }
       index--;
