@@ -1,6 +1,6 @@
 {
   "name": "simple-marked-sanitizer",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Simple sanitizer for marked",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,6 @@
   "homepage": "https://github.com/shunjikonishi/simple-marked-sanitizer#readme",
   "devDependencies": {
     "chai": "^4.2.0",
-    "marked": "^0.5.2"
+    "marked": "^0.6.3"
   }
 }
