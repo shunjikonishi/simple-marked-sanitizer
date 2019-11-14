@@ -364,6 +364,10 @@
     }
   }
 
+  SimpleMarkedSanitizer.prototype.clearTags = function() {
+    this._tags = [];
+  }
+
   SimpleMarkedSanitizer.ELEMENT_WHITELIST = ELEMENT_WHITELIST;
   SimpleMarkedSanitizer.ATTRIBUTE_WHITELIST = ATTRIBUTE_WHITELIST;
 
