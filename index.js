@@ -101,6 +101,27 @@
     return c === "'" || c === "\"";
   }
 
+  function isEmptyTag(tagName) {
+    const emptyTags = [
+      "area",
+      "base",
+      "br",
+      "col",
+      "embed",
+      "hr",
+      "img",
+      "input",
+      "keygen",
+      "link",
+      "meta",
+      "param",
+      "source",
+      "track",
+      "wbr",
+    ];
+    return emptyTags.indexOf(tagName) !== -1;
+  }
+
   function parseAttrs(str) {
     if (!str) {
       return [];
@@ -205,6 +226,7 @@
     this._elementWhiteList = ELEMENT_WHITELIST;
     this._attributeWhiteList = ATTRIBUTE_WHITELIST;
     this._debug = false;
+    this._tags = [];
     return this;
   }
 
@@ -294,6 +316,7 @@
     if (tag.endsWith("/>")) {
       result += "/>";
     } else {
+      this.pushTag(tagName);
       result += ">";
     }
     return result;
@@ -308,8 +331,42 @@
     if (this.isAllowedTag(tagName)) {
       return escape(tag);
     }
+    this.popTag(tagName);
     return tag;
   };
+
+
+  SimpleMarkedSanitizer.prototype.inHtml = function() {
+    return this._tags.length > 0;
+  }
+
+  SimpleMarkedSanitizer.prototype.pushTag = function(tagName) {
+    if (!isEmptyTag(tagName)) {
+      this._tags.push(tagName);
+    }
+  }
+
+  SimpleMarkedSanitizer.prototype.popTag = function(tagName) {
+    if (this._tags.length === 0) {
+      return;
+    }
+    if (this._tags[this._tags.length - 1] === tagName) {
+      this._tags.pop();
+      return;
+    }
+    let index = this._tags.length - 2;
+    while (index >= 0) {
+      if (this._tags[index] === tagName) {
+        this._tags = this._tass.slice(0, index);
+        return;
+      }
+      index--;
+    }
+  }
+
+  SimpleMarkedSanitizer.prototype.clearTags = function() {
+    this._tags = [];
+  }
 
   SimpleMarkedSanitizer.ELEMENT_WHITELIST = ELEMENT_WHITELIST;
   SimpleMarkedSanitizer.ATTRIBUTE_WHITELIST = ATTRIBUTE_WHITELIST;
