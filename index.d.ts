@@ -16,6 +16,8 @@ declare class SimpleMarkedSanitizer {
 
   clearTags(): () => void;
 
+  inHtml(): () => boolean;
+
   getSanitizer(): (str: string) => string;
 }
 
