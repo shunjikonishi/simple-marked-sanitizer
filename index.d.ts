@@ -14,6 +14,10 @@ declare class SimpleMarkedSanitizer {
   debug(): boolean;
   debug(v: boolean): SimpleMarkedSanitizer;
 
+  clearTags(): () => void;
+
+  inHtml(): () => boolean;
+
   getSanitizer(): (str: string) => string;
 }
 
