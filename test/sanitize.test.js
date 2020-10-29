@@ -135,4 +135,11 @@ describe("SimpleMarkedSanitizer", function() {
     const result = apply(input);
     assert.equal(result, output);
   });
+
+  it("with linefeed", () => {
+    const input  = '<img src="hoge" \n  alt="fuga"/>';
+    const output = '<p><img src="hoge" alt="fuga"/></p>';
+    const result = apply(input);
+    assert.equal(result, output);
+  });
 });
