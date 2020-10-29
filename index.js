@@ -73,7 +73,7 @@
     ],
   };
 
-  var OPEN_TAG_REGEX = /^<([a-zA-Z0-9-]+)\s*(.*)?\/?>$/;
+  var OPEN_TAG_REGEX = /^<([a-zA-Z0-9-]+)\s*(.*)?\/?>$/s;
   var CLOSE_TAG_REGEX = /^<\/([a-zA-Z0-9-]+)\s*>$/;
 
   function escape(str) {
