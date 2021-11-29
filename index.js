@@ -53,6 +53,7 @@
     "summary",
     "details",
     "span",
+    "mark",
   ];
 
   var ATTRIBUTE_WHITELIST = {
